@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaTeX Vault — 12 Programs</title>
+<style>
+  :root{
+    --ink:#14161b;
+    --card:#1b1e25;
+    --card-border:#2a2e37;
+    --paper:#e9e6de;
+    --paper-dim:#9a9da6;
+    --gold:#c9a227;
+    --gold-dim:#8a7020;
+    --green:#4caf6d;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;padding:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:32px 18px 80px;
+  }
+  header{
+    padding:18px 0 26px;
+    border-bottom:1px solid var(--card-border);
+    margin-bottom:22px;
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:1.5rem;
+    letter-spacing:0.5px;
+    color:var(--paper);
+  }
+  header h1 span{color:var(--gold);}
+  header p{
+    margin:0;
+    color:#8b8e97;
+    font-size:0.85rem;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:6px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 16px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .card-head:hover{background:#20242c;}
+  .card-title{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    min-width:0;
+  }
+  .num{
+    color:var(--gold);
+    font-weight:700;
+    flex-shrink:0;
+    font-size:0.85rem;
+  }
+  .desc{
+    color:var(--paper);
+    font-size:0.85rem;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .copy-btn{
+    background:transparent;
+    border:1px solid var(--gold-dim);
+    color:var(--gold);
+    padding:6px 12px;
+    border-radius:4px;
+    font-size:0.75rem;
+    font-family:inherit;
+    cursor:pointer;
+    transition:background 0.15s,color 0.15s;
+    white-space:nowrap;
+  }
+  .copy-btn:hover{background:var(--gold);color:#1a1a1a;}
+  .copy-btn.copied{background:var(--green);border-color:var(--green);color:#0d0d0d;}
+  .chev{
+    color:#666;
+    font-size:0.7rem;
+    transition:transform 0.15s;
+    flex-shrink:0;
+  }
+  .card.open .chev{transform:rotate(90deg);}
+  .card-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.2s ease;
+    border-top:1px solid transparent;
+  }
+  .card.open .card-body{
+    max-height:2000px;
+    border-top:1px solid var(--card-border);
+  }
+  pre{
+    margin:0;
+    padding:14px 16px;
+    font-size:0.78rem;
+    line-height:1.5;
+    color:#cfd2d8;
+    overflow-x:auto;
+    white-space:pre;
+  }
+  footer{
+    margin-top:28px;
+    text-align:center;
+    color:#5a5d66;
+    font-size:0.72rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>LaTeX <span>Vault</span></h1>
+    <p>12 programs · click a row to preview · click Copy to grab the code</p>
+  </header>
+
+  <div id="list"></div>
+
+  <footer>Krishna — VTU CSE · offline, no login, no tracking</footer>
+</div>
+
+<script>
+const programs = [
+{title:"Doc with 2 sections, header & footer", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\\usepackage{fancyhdr}
+
+\\pagestyle{fancy}
+
+\\fancyhf{}
+\\fancyhead[L]{LaTeX Project}
+\\fancyhead[R]{Sample Document}
+\\fancyfoot[L]{BCE}
+\\fancyfoot[R]{\\thepage}
+
+\\title{LaTeX Project}
+\\author{}
+\\date{March 16, 2026}
+
+\\begin{document}
+
+\\maketitle
+
+\\section{About BRCE}
+
+Brindavan Group of Institutions, established 30+ years ago, is a student-centric institution with over 6600 enrolled students across various programs including Research, Undergraduate, Pre-University, Diploma, and Postgraduate studies. Our diverse offerings encompass professional disciplines such as Business, Engineering, Architecture, Commerce, Aviation, Journalism, and Industry-Oriented Skills.
+
+Renowned as one of Bengaluru's premier institutions, Brindavan Group of Institutions continuously evolves to benefit our students and community. Recognized by the Government of Karnataka and approved by the All India Council for Technical Education (AICTE), our institution is affiliated with Bengaluru City University and VTU (Visvesvaraya Technological University) and accredited by NAAC. Our accolades and affiliations reflect the dedication of our faculty and staff, as well as the excellence of our programs.
+
+\\subsection{Program Educational Objectives}
+
+\\begin{itemize}
+    \\item \\textbf{PEO1:} To impart a strong foundation in engineering fundamentals, knowledge and capability of quality study.
+    
+    \\item \\textbf{PEO2:} To provide in-depth knowledge in analyzing, designing and solving real-life computational problems.
+    
+    \\item \\textbf{PEO3:} To foster professionalism with ethical consciousness, interpersonal skills, and the ability to adapt to evolving technical changes.
+\\end{itemize}
+
+\\section{Program Specific Outcomes}
+
+\\begin{itemize}
+    \\item \\textbf{PSO1: Problem-Solving Skills:} An ability to investigate and solve a problem by analysis, interpretation of data, design and implementation through appropriate techniques, tools and skills.
+    
+    \\item \\textbf{PSO2: Professional Skills:} An ability to apply algorithmic principles, computing skills, and computer science theory in the modeling and design of computer-based systems.
+    
+    \\item \\textbf{PSO3: Entrepreneurial Ability:} An ability to apply design, development principles and management skills in the construction of software products of varying complexity to become an entrepreneur.
+\\end{itemize}
+
+\\end{document}`},
+
+{title:"Sample Abstract/Summary document", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[a4paper,margin=1in]{geometry}
+\\usepackage{setspace}
+
+\\title{\\textbf{COVID-19 and Comobid}}
+\\author{AI in Medical Field}
+\\date{}
+
+\\begin{document}
+
+\\maketitle
+
+\\begin{center}
+    \\Large\\textbf{Abstract}
+\\end{center}
+
+\\noindent
+The COVID-19 pandemic has created unprecedented challenges worldwide. Artificial intelligence (AI) technologies hold tremendous potential for tackling key aspects of pandemic management and response. In the present review, we discuss the tremendous possibilities of AI technology in addressing the global challenges posed by the COVID-19 pandemic. First, we outline the multiple impacts of the current pandemic on public health, the economy, and society.
+
+Next, we focus on the innovative applications of advanced AI technologies in key areas such as COVID-19 prediction, detection, control, and drug discovery for treatment. Specifically, AI-based predictive analytics models can use clinical, epidemiological, and omics data to forecast disease spread and patient outcomes. Additionally, deep neural networks enable rapid diagnosis through medical imaging.
+
+Intelligent systems can support risk assessment, decision-making, and social sensing, thereby improving epidemic control and public health policies. Furthermore, high-throughput virtual screening enables AI to accelerate the identification of therapeutic drug candidates and opportunities for drug repurposing.
+
+Finally, we discuss future research directions for AI technology in combating COVID-19, emphasizing the importance of interdisciplinary collaboration. Though promising, barriers related to model generalization, data quality, infrastructure readiness, and ethical risks must be addressed to fully translate these innovations into real-world impacts. Multidisciplinary collaboration engaging diverse expertise and stakeholders is imperative for developing robust, responsible, and human-centered AI solutions against COVID-19 and future public health emergencies.
+
+\\vspace{0.3cm}
+
+\\noindent
+\\textbf{Keywords:} Artificial Intelligence, COVID-19, Diagnosis, Prognosis Evaluation, Epidemic Prediction, Drug Discovery.
+
+\\end{document}`},
+
+{title:"VTU project report title page", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[a4paper,margin=1in]{geometry}
+\\usepackage{graphicx}
+
+\\begin{document}
+
+\\begin{titlepage}
+
+\\begin{center}
+
+{\\Large\\textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}}\\\\[0.4cm]
+
+{\\large Belagavi, Karnataka}\\\\[1cm]
+
+\\includegraphics[width=2.6cm]{VTU.png}\\\\[1cm]
+
+{\\Large \\textbf{PROJECT REPORT ON}}\\\\[0.8cm]
+
+{\\Huge \\textbf{Covid - 19}}\\\\[1cm]
+
+Submitted in partial fulfillment of the requirements for the award of the degree of\\\\[0.5cm]
+
+{\\Large \\textbf{Bachelor of Engineering}}\\\\[0.3cm]
+
+in\\\\[0.3cm]
+
+{\\Large \\textbf{Computer Science and Engineering}}\\\\[0.8cm]
+
+Submitted by\\\\[0.3cm]
+
+{\\Large \\textbf{KRISHNA VAMSI M}}\\\\
+USN: 1BO24CS116\\\\[1cm]
+
+Guided by\\\\[0.3cm]
+
+{\\Large \\textbf{Prof. Ashwini M }}\\\\[1cm]
+
+\\includegraphics[width=2.5cm]{brce.logo.jpg}\\\\[0.8cm]
+
+{\\Large \\textbf{Department of Computer Science and Engineering}}\\\\
+{\\Large \\textbf{Brindavan College of Engineering}}\\\\
+Bengaluru\\\\[0.4cm]
+
+2025--2026
+
+\\end{center}
+
+\\end{titlepage}
+
+\\end{document}`},
+
+{title:"Certificate page with blank entry fields", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[margin=1in]{geometry}
+\\usepackage{graphicx}
+\\usepackage{tcolorbox}
+\\usepackage{setspace}
+\\usepackage{xcolor}
+\\usepackage{mathptmx}  
+\\usepackage{ragged2e}
+
+\\pagestyle{empty}
+\\setlength{\\parindent}{0pt}
+
+\\begin{document}
+
+\\begin{tcolorbox}[
+colback=white,
+colframe=black,
+boxrule=1.5pt,
+arc=0pt,
+left=15pt,
+right=15pt,
+top=15pt,
+bottom=15pt]
+
+\\begin{center}
+
+{\\large\\bfseries BRINDAVAN COLLEGE OF ENGINEERING}\\\\[4pt]
+
+{\\large\\bfseries BENGALURU -- 560063}\\\\[6pt]
+
+{\\large\\bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\\\[12pt]
+
+\\includegraphics[width=3cm]{VTU.png}\\\\[12pt]
+
+{\\large\\bfseries\\underline{CERTIFICATE}}
+
+\\end{center}
+
+\\onehalfspacing
+\\justifying
+
+This is to certify that \\textbf{\\textcolor{blue}{Krishna Vamsi M}} has submitted the
+Dissertation Phase II Report entitled
+\\textbf{\\textcolor{blue}{\`\`Onto-Copy: Copyright Ontology on Indian Court Judgements for Case Summarisation''}}
+in partial fulfillment of the requirements for the award of the
+\\textbf{IV Semester  Degree in Computer Technology}
+prescribed by \\textbf{Visvesvaraya Technological University (VTU)}
+for the academic year \\textbf{2025--26}.
+
+\\vspace{0.5cm}
+
+The dissertation report has been approved as it satisfies the academic
+requirements with respect to the work guidelines prescribed for the said
+degree.
+
+\\vspace{2cm}
+
+\\noindent
+\\begin{minipage}[t]{0.48\\textwidth}
+\\centering
+\\rule{5cm}{0.4pt}\\\\
+\\textbf{Prof. Ashwini M}\\\\
+Assistant Professor \\& Guide\\\\
+Department of CSE\\\\
+BRCE, Bengaluru
+\\end{minipage}
+\\hfill
+\\begin{minipage}[t]{0.48\\textwidth}
+\\centering
+\\rule{5cm}{0.4pt}\\\\
+\\textbf{Dr. Komala CR}\\\\
+Professor \\& Head\\\\
+Department of CSE\\\\
+BRCE, Bengaluru
+\\end{minipage}
+
+\\vspace{2.2cm}
+
+\\noindent
+\\begin{minipage}[t]{0.48\\textwidth}
+\\centering
+\\rule{5cm}{0.4pt}\\\\
+\\textbf{Examiner 1}
+\\end{minipage}
+\\hfill
+\\begin{minipage}[t]{0.48\\textwidth}
+\\centering
+\\rule{5cm}{0.4pt}\\\\
+\\textbf{Examiner 2}
+\\end{minipage}
+
+\\end{tcolorbox}
+
+\\end{document}`},
+
+{title:"Table with proper labels (multirow/multicol)", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[utf8]{inputenc}
+\\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\\usepackage{multirow}
+\\usepackage{array}
+
+\\renewcommand{\\arraystretch}{1.4}
+
+\\begin{document}
+
+\\begin{center}
+{\\LARGE\\textbf{Table: Students Details of 4th Semester CSE}}
+\\end{center}
+
+\\vspace{0.5cm}
+
+\\begin{center}
+{\\Large\\textbf{Marks Details}}
+\\end{center}
+
+\\vspace{0.3cm}
+
+\\begin{center}
+\\begin{tabular}{|c|c|p{4cm}|c|c|c|c|}
+\\hline
+
+\\multirow{2}{*}{\\textbf{S.NO}} &
+\\multirow{2}{*}{\\textbf{USN}} &
+\\multirow{2}{*}{\\centering\\arraybackslash\\textbf{Student Name}} &
+\\multicolumn{4}{c|}{\\textbf{MARKS}} \\\\
+
+\\cline{4-7}
+
+& & &
+\\textbf{MATHS} &
+\\textbf{ADA} &
+\\textbf{Microcontroller} &
+\\textbf{DBMS} \\\\
+
+\\hline
+
+1 & 1BO24CS034 & Jeevan L & 45 & 77 & 97 & 58 \\\\
+\\hline
+
+2 & 1BO24CS116 & Krishna & 74 & 78 & 66 & 88 \\\\
+\\hline
+
+3 & 1BO24CS036 & Jeevan S Meti & 88 & 82 & 79 & 95 \\\\
+\\hline
+
+\\end{tabular}
+\\end{center}
+
+\\end{document}`},
+
+{title:"Side-by-side graphics using subfloat", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[margin=1in]{geometry}
+\\usepackage{graphicx}
+\\usepackage{subcaption}
+
+\\title{Side-by-Side Graphics Using Subgraph}
+\\author{}
+\\date{}
+
+\\begin{document}
+
+\\maketitle
+
+\\begin{center}
+\\Large\\textbf{Side-by-Side Subgraph}
+\\end{center}
+
+\\begin{figure}[ht]
+\\centering
+
+\\subfloat[First Dataset Accuracy]{
+\\begin{minipage}[c]{0.3\\textwidth}
+\\centering
+\\includegraphics[width=\\textwidth]{Fig1.png}
+\\end{minipage}
+}
+\\hfill
+\\subfloat[Second Dataset Accuracy]{
+\\begin{minipage}[c]{0.3\\textwidth}
+\\centering
+\\includegraphics[width=\\textwidth]{fig2.png}
+\\end{minipage}
+}
+\\hfill
+\\subfloat[Comparison]{
+\\begin{minipage}[c]{0.3\\textwidth}
+\\centering
+\\includegraphics[width=\\textwidth]{fig3.jpg}
+\\end{minipage}
+}
+
+\\caption{Performance Analysis}
+\\label{fig:performance}
+
+\\end{figure}
+
+\\end{document}`},
+
+{title:"Two mathematical equations (amsmath)", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage{amsmath}
+
+\\begin{document}
+
+\\title{Following Two Mathematical Equations}
+\\date{}
+\\maketitle
+
+\\section*{Equations Set 1}
+
+\\begin{align*}
+x &= \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a} \\\\[6pt]
+  &= \\frac{-2 \\pm \\sqrt{2^2-4(1)(-8)}}{2(1)} \\\\[6pt]
+  &= \\frac{-2 \\pm \\sqrt{4+32}}{2}
+\\end{align*}
+
+\\section*{Equations Set 2}
+
+\\begin{align*}
+\\varphi_{\\sigma}^{\\lambda}A_t
+&=
+\\sum_{\\pi\\in C_t}
+\\operatorname{sgn}(\\pi)
+\\varphi_{\\pi}^{\\lambda}
+\\\\[6pt]
+&=
+\\sum_{\\tau\\in C_{\\sigma}^{t}}
+\\operatorname{sgn}(\\sigma^{-1}\\tau\\sigma)
+\\varphi_{\\sigma^{-1}\\tau\\sigma}^{\\lambda}
+\\\\[6pt]
+&=
+A_{\\sigma}^{t}
+\\varphi_{\\sigma}^{\\lambda}
+\\end{align*}
+
+\\end{document}`},
+
+{title:"Numbered theorems, definitions, corollaries, lemmas", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage{amsthm}
+\\usepackage{amsmath}
+
+\\newtheorem{definition}{Definition}
+\\newtheorem{theorem}{Theorem}[section]
+\\newtheorem{corollary}{Corollary}[theorem]
+\\newtheorem{lemma}[theorem]{Lemma}
+
+\\begin{document}
+
+\\section{Introduction}
+
+Theorems can easily be defined.
+
+\\begin{definition}
+In a right-angled triangle, the square of the hypotenuse side is equal to the sum of the squares of the other two sides.
+\\end{definition}
+
+\\begin{theorem}[Pythagorean Theorem]
+\\label{pythagorean}
+This is a theorem about right triangles and can be summarised in the following equation:
+\\[
+x^2+y^2=z^2
+\\]
+\\end{theorem}
+
+And a consequence of Theorem~\\ref{pythagorean} is stated in the following corollary.
+
+\\begin{corollary}
+There is no right rectangle whose sides measure 3 cm, 4 cm, and 6 cm.
+\\end{corollary}
+
+You can reference theorems such as Theorem~\\ref{pythagorean} when a label is assigned.
+
+\\begin{lemma}
+Triangles with the same base and height have the same area.
+\\end{lemma}
+
+\\end{document}`},
+
+{title:"Two paragraphs with 10+ citations + references", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage[numbers]{natbib}
+
+\\begin{document}
+
+\\title{Document that Consists of Two Paragraphs with a Minimum of 10 Citations and Displaying the References in the Section}
+\\date{}
+\\maketitle
+
+\\paragraph{Paragraph 1}
+
+The theory of relativity has been explored extensively in various scientific papers
+\\citep{author1,author2,author3}. Einstein's contributions to physics are profound and have paved the way for many modern discoveries
+\\citep{author4,author5}. Researchers continue to investigate the complexities of spacetime and the universe
+\\citep{author6,author7}. These advancements have led to new methods of measurement and analysis in cosmology
+\\citep{author8}.
+
+\\paragraph{Paragraph 2}
+
+Recent studies have focused on the impact of climate change on various ecosystems
+\\citep{author9,author10}. Scientists are examining how rising temperatures and changing weather patterns affect biodiversity and human health
+\\citep{author11,author12}. Furthermore, interdisciplinary research has brought about innovative solutions for sustainable development
+\\citep{author13}. Collaboration among experts from different fields is essential to address the challenges of global warming
+\\citep{author14}.
+
+\\newpage
+
+\\begin{thebibliography}{99}
+
+\\bibitem{author1}
+Author One.
+\\textit{Title of Article One}.
+Journal Name, Vol. 10, No. 1, pp. 1--10, 2022.
+
+\\bibitem{author2}
+Author Two.
+\\textit{Title of Book Two}.
+Publisher Name, 2021.
+
+\\bibitem{author3}
+Author Three.
+\\textit{Title of Conference Paper Three}.
+In: Proceedings of Conference, pp. 100--110, 2020.
+
+\\bibitem{author4}
+Author Four.
+\\textit{Title of Article Four}.
+Journal Name, Vol. 9, No. 2, pp. 15--25, 2019.
+
+\\bibitem{author5}
+Author Five.
+\\textit{Title of Book Five}.
+Publisher Name, 2018.
+
+\\bibitem{author6}
+Author Six.
+\\textit{Title of Conference Paper Six}.
+In: Proceedings of Conference, pp. 200--210, 2017.
+
+\\bibitem{author7}
+Author Seven.
+\\textit{Title of Article Seven}.
+Journal Name, Vol. 8, No. 3, pp. 30--40, 2016.
+
+\\bibitem{author8}
+Author Eight.
+\\textit{Title of Book Eight}.
+Publisher Name, 2015.
+
+\\bibitem{author9}
+Author Nine.
+\\textit{Title of Conference Paper Nine}.
+In: Proceedings of Conference, pp. 300--310, 2014.
+
+\\bibitem{author10}
+Author Ten.
+\\textit{Title of Article Ten}.
+Journal Name, Vol. 7, No. 4, pp. 50--60, 2013.
+
+\\bibitem{author11}
+Author Eleven.
+\\textit{Title of Article Eleven}.
+Journal Name, Vol. 6, No. 5, pp. 70--80, 2012.
+
+\\bibitem{author12}
+Author Twelve.
+\\textit{Title of Article Twelve}.
+Journal Name, Vol. 5, No. 6, pp. 90--100, 2011.
+
+\\bibitem{author13}
+Author Thirteen.
+\\textit{Title of Book Thirteen}.
+Publisher Name, 2010.
+
+\\bibitem{author14}
+Author Fourteen.
+\\textit{Title of Conference Paper Fourteen}.
+In: Proceedings of Conference, pp. 400--410, 2009.
+
+\\end{thebibliography}
+
+\\end{document}`},
+
+{title:"Tree diagram / hierarchy using TikZ", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage{tikz}
+\\usetikzlibrary{trees}
+
+\\begin{document}
+
+\\title{Simple Tree Diagram or Hierarchical Structure in the Document with Appropriate Labels Using the TikZ Library}
+\\date{}
+\\maketitle
+
+\\begin{center}
+
+\\begin{tikzpicture}[
+level 1/.style={sibling distance=7cm},
+level 2/.style={sibling distance=4cm},
+level distance=2cm,
+every node/.style={font=\\large}
+]
+
+\\node {Root}
+child {
+    node {Child 1}
+    child { node {Grandchild 1.1} }
+    child { node {Grandchild 1.2} }
+}
+child {
+    node {Child 2}
+    child { node {Grandchild 2.1} }
+    child { node {Grandchild 2.2} }
+};
+
+\\end{tikzpicture}
+
+\\end{center}
+
+\\end{document}`},
+
+{title:"Algorithm presentation — Bubble Sort", code:`\\documentclass[12pt,a4paper]{article}
+
+\\usepackage{algorithm}
+\\usepackage{algpseudocode}
+
+\\begin{document}
+
+\\begin{algorithm}
+\\caption{Bubble Sort}
+
+\\begin{algorithmic}[1]
+
+\\Procedure{BubbleSort}{$A,n$}
+
+\\For{$i \\gets 0$ to $n-1$}
+    \\For{$j \\gets 0$ to $n-1-i$}
+        \\If{$A[j] > A[j+1]$}
+            \\State Swap $A[j]$ and $A[j+1]$
+        \\EndIf
+    \\EndFor
+\\EndFor
+
+\\EndProcedure
+
+\\end{algorithmic}
+
+\\end{algorithm}
+
+\\end{document}`},
+
+{title:"Simple report with chapters (report class)", code:`\\documentclass{report}
+
+\\title{Simple Report}
+\\author{}
+\\date{}
+
+\\begin{document}
+	
+	\\maketitle
+	
+	\\tableofcontents
+	
+	\\chapter{Introduction}
+	This is the introduction.
+	
+	\\chapter{Methods}
+	This is the methods section.
+	
+	\\chapter{Results}
+	This is the results section.
+	
+	\\chapter{Discussion}
+	This is the discussion section.
+	
+	\\chapter{Conclusion}
+	This is the conclusion.
+	
+\\end{document}`}
+];
+
+const list = document.getElementById('list');
+
+programs.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const head = document.createElement('div');
+  head.className = 'card-head';
+  head.innerHTML = `
+    <div class="card-title">
+      <span class="num">P${i+1}</span>
+      <span class="desc">${p.title}</span>
+    </div>
+    <div class="actions">
+      <button class="copy-btn">Copy</button>
+      <span class="chev">▶</span>
+    </div>
+  `;
+
+  const body = document.createElement('div');
+  body.className = 'card-body';
+  const pre = document.createElement('pre');
+  pre.textContent = p.code;
+  body.appendChild(pre);
+
+  head.querySelector('.card-title').addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+  head.querySelector('.chev').addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+
+  const btn = head.querySelector('.copy-btn');
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(p.code).then(() => {
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 1200);
+    });
+  });
+
+  card.appendChild(head);
+  card.appendChild(body);
+  list.appendChild(card);
+});
+</script>
+</body>
+</html>
