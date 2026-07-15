@@ -144,58 +144,57 @@
 
   <div id="list"></div>
 
-  <footer> VTU CSE · offline, no login, no tracking</footer>
+  <footer>Krishna — VTU CSE · offline, no login, no tracking</footer>
 </div>
 
 <script>
 const programs = [
 {title:"Doc with 2 sections, header & footer", code:`\\documentclass[12pt,a4paper]{article}
-
-\\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\\usepackage[
+left=2cm,
+right=2cm,
+top=2.8cm,
+bottom=2cm,
+headheight=15pt,
+headsep=0.5cm
+]{geometry}
 \\usepackage{fancyhdr}
-
 \\pagestyle{fancy}
-
 \\fancyhf{}
-\\fancyhead[L]{LaTeX Project}
-\\fancyhead[R]{Sample Document}
-\\fancyfoot[L]{BCE}
+\\fancyhead[R]{LaTeX Project}
+\\fancyfoot[L]{BRCE}
 \\fancyfoot[R]{\\thepage}
-
+\\renewcommand{\\headrulewidth}{0.4pt}
+\\renewcommand{\\footrulewidth}{0.4pt}
+\\fancypagestyle{plain}{
+    \\fancyhf{}
+    \\fancyhead[R]{LaTeX Project}
+    \\fancyfoot[L]{BRCE}
+    \\fancyfoot[R]{\\thepage}
+    \\renewcommand{\\headrulewidth}{0.4pt}
+    \\renewcommand{\\footrulewidth}{0.4pt}
+}
 \\title{LaTeX Project}
 \\author{}
 \\date{March 16, 2026}
-
 \\begin{document}
-
 \\maketitle
-
 \\section{About BRCE}
 
 Brindavan Group of Institutions, established 30+ years ago, is a student-centric institution with over 6600 enrolled students across various programs including Research, Undergraduate, Pre-University, Diploma, and Postgraduate studies. Our diverse offerings encompass professional disciplines such as Business, Engineering, Architecture, Commerce, Aviation, Journalism, and Industry-Oriented Skills.
-
 Renowned as one of Bengaluru's premier institutions, Brindavan Group of Institutions continuously evolves to benefit our students and community. Recognized by the Government of Karnataka and approved by the All India Council for Technical Education (AICTE), our institution is affiliated with Bengaluru City University and VTU (Visvesvaraya Technological University) and accredited by NAAC. Our accolades and affiliations reflect the dedication of our faculty and staff, as well as the excellence of our programs.
-
 \\subsection{Program Educational Objectives}
-
 \\begin{itemize}
     \\item \\textbf{PEO1:} To impart a strong foundation in engineering fundamentals, knowledge and capability of quality study.
-    
     \\item \\textbf{PEO2:} To provide in-depth knowledge in analyzing, designing and solving real-life computational problems.
-    
     \\item \\textbf{PEO3:} To foster professionalism with ethical consciousness, interpersonal skills, and the ability to adapt to evolving technical changes.
 \\end{itemize}
-
 \\section{Program Specific Outcomes}
-
 \\begin{itemize}
     \\item \\textbf{PSO1: Problem-Solving Skills:} An ability to investigate and solve a problem by analysis, interpretation of data, design and implementation through appropriate techniques, tools and skills.
-    
     \\item \\textbf{PSO2: Professional Skills:} An ability to apply algorithmic principles, computing skills, and computer science theory in the modeling and design of computer-based systems.
-    
     \\item \\textbf{PSO3: Entrepreneurial Ability:} An ability to apply design, development principles and management skills in the construction of software products of varying complexity to become an entrepreneur.
 \\end{itemize}
-
 \\end{document}`},
 
 {title:"Sample Abstract/Summary document", code:`\\documentclass[12pt,a4paper]{article}
